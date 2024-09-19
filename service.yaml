@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sensor-fault-detection-service
+  namespace: development
+  labels:
+    app: sensor-fault-detection
+spec:
+  selector:
+    app: sensor-fault-detection
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP

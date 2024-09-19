@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sensor-fault-detection
+  namespace: development
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sensor-fault-detection
+  template:
+    metadata:
+      labels:
+        app: sensor-fault-detection
+    spec:
+      containers:
+      - name: debsandipagt
+        image: debsandipagt/sensor-fault-detection:v1
+        command: ["python", "app.py"]
+        ports:
+        - containerPort: 80  # Adjust if needed, remove if not required
