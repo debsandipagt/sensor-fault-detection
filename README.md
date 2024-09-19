@@ -1,33 +1,36 @@
-# 1. Install Anaconda and add `C:\Users\debsa\anaconda3\` to the Windows environment path variable.
 
-# 2. Open VS Code in the folder `sensor-fault-detection`.
+# Project starts
 
-# 3. In VS Code, go to Settings -> Path -> Python: Conda Path and add `C:\Users\debsa\anaconda3\`.
+## 1. Install Anaconda and add `C:\Users\debsa\anaconda3\` to the Windows environment path variable.
 
-# 4. In VS Code, go to Settings -> Path -> Python: Default Interpreter Path and add `C:\Users\debsa\anaconda3\python.exe`.
+## 2. Open VS Code in the folder `sensor-fault-detection`.
 
-# 5. Open the with CMD terminal and write the command `git init` to initialize Git (Git is a version control system).
+## 3. In VS Code, go to Settings -> Path -> Python: Conda Path and add `C:\Users\debsa\anaconda3\`.
 
-# 6. Create an environment with the command `conda create -p myenv python=3.8.16 -y`.
+## 4. In VS Code, go to Settings -> Path -> Python: Default Interpreter Path and add `C:\Users\debsa\anaconda3\python.exe`.
 
-# 7. Activate the environment with `conda activate ./myenv/`.
+## 5. Open the with CMD terminal and write the command `git init` to initialize Git (Git is a version control system).
 
-# 8. Create a file named `requirements.txt`.
+## 6. Create an environment with the command `conda create -p myenv python=3.8.16 -y`.
 
-# 9. Run `pip install -r requirements.txt` to install all required libraries.
+## 7. Activate the environment with `conda activate ./myenv/`.
 
-# 10. Create a `README.md` file to document all steps.
+## 8. Create a file named `requirements.txt`.
 
-# 11. Create a `.gitignore` file (to specify files/folders that you do not want to push to GitHub).
+## 9. Run `pip install -r requirements.txt` to install all required libraries.
 
-# 12. Create a `src` folder, and within it, create an `__init__.py` file (this folder acts as a package since it contains `__init__.py`).
+## 10. Create a `README.md` file to document all steps.
 
-# 13. Setup and Installation
+## 11. Create a `.gitignore` file (to specify files/folders that you do not want to push to GitHub).
+
+## 12. Create a `src` folder, and within it, create an `__init__.py` file (this folder acts as a package since it contains `__init__.py`).
+
+## 13. Setup and Installation
 
 - Create a `setup.py` file and use the command `python setup.py install` to install the package.
 - Check installed packages using `pip list`.
 
-# 14. Machine Learning Model Building
+## 14. Machine Learning Model Building
 
 ## 14.1 Create `notebooks` Folder
 
