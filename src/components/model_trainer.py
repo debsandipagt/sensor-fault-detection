@@ -4,6 +4,8 @@ import os
 import pandas as pd
 import numpy as np
 from sklearn.metrics import accuracy_score
+import mlflow
+from mlflow.sklearn import log_model
 
 from xgboost import XGBClassifier
 from sklearn.svm import SVC
@@ -71,43 +73,39 @@ class ModelTrainer:
             raise CustomException(e, sys)
 
 
-    def get_best_model(self,
-                    x_train:np.array, 
-                    y_train: np.array,
-                    x_test:np.array, 
-                    y_test: np.array):
+    def get_best_model(self, x_train:np.array, y_train: np.array, x_test:np.array, y_test: np.array):
+    
         try:
-            
-             
+            with mlflow.start_run():
+                
+                model_report: dict = self.evaluate_models(x_train =  x_train, y_train = y_train, x_test =  x_test, y_test = y_test, models = self.models)
 
-            model_report: dict = self.evaluate_models(
-                 x_train =  x_train, 
-                 y_train = y_train, 
-                 x_test =  x_test, 
-                 y_test = y_test, 
-                 models = self.models
-            )
+                print(model_report)
 
-            print(model_report)
+                best_model_score = max(sorted(model_report.values()))
 
-            best_model_score = max(sorted(model_report.values()))
+                ## To get best model name from dict
 
-            ## To get best model name from dict
+                best_model_name = list(model_report.keys())[list(model_report.values()).index(best_model_score)]
+                best_model_object = self.models[best_model_name]
 
-            best_model_name = list(model_report.keys())[list(model_report.values()).index(best_model_score)]
-
-            best_model_object = self.models[best_model_name]
+                # Log model and parameters
+                mlflow.log_param("Best Model", best_model_name)
+                mlflow.log_metric("Best Model Score", best_model_score)
 
 
-            return best_model_name, best_model_object, best_model_score
+                return best_model_name, best_model_object, best_model_score
 
 
         except Exception as e:
             raise CustomException(e,sys)
+
         
     def finetune_best_model(self, best_model_object:object, best_model_name, X_train, y_train,) -> object:
         
         try:
+            # with mlflow.start_run():
+
 
             model_param_grid = self.utils.read_yaml_file(self.model_trainer_config.model_config_file_path)["model_selection"]["model"][best_model_name]["search_param_grid"]
 
@@ -121,9 +119,11 @@ class ModelTrainer:
 
             print("best params are:", best_params)
 
+            # Log the hyperparameters used in fine-tuning
+            mlflow.log_params(best_params)
+
             finetuned_model = best_model_object.set_params(**best_params)
             
-
             return finetuned_model
         
         except Exception as e:
@@ -140,13 +140,6 @@ class ModelTrainer:
             x_train, y_train, x_test, y_test = (train_array[:, :-1], train_array[:, -1], test_array[:, :-1], test_array[:, -1],)
 
             
-
-            logging.info(f"Extracting model config file path")
-
-
-            
-
-
 
             logging.info(f"Extracting model config file path")
 
@@ -197,12 +190,13 @@ class ModelTrainer:
                 file_path=self.model_trainer_config.trained_model_path,
                 obj=best_model
             )
+
+            # Log final model score and save the model in MLflow
+            mlflow.log_metric("Final Model Score", best_model_score)
+            mlflow.sklearn.log_model(best_model, "Best_Model")
             
             return self.model_trainer_config.trained_model_path
 
             
-
-            
-
         except Exception as e:
             raise CustomException(e, sys)

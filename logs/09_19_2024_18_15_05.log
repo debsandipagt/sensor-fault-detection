@@ -1,0 +1,27 @@
+[ 2024-09-19 18:15:09,040 ] 225 werkzeug - WARNING -  * Debugger is active!
+[ 2024-09-19 18:15:09,157 ] 225 werkzeug - INFO -  * Debugger PIN: 421-724-813
+[ 2024-09-19 18:15:46,011 ] 225 werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+[ 2024-09-19 18:15:46,011 ] 225 werkzeug - INFO -  * Running on http://192.168.134.4:80/ (Press CTRL+C to quit)
+[ 2024-09-19 18:15:57,409 ] 225 werkzeug - INFO - 192.168.134.4 - - [19/Sep/2024 18:15:57] "GET / HTTP/1.1" 200 -
+[ 2024-09-19 18:16:09,394 ] 81 root - INFO - Entered initiate_data_ingestion method of Data_Ingestion class
+[ 2024-09-19 18:16:09,395 ] 53 root - INFO - Exporting data from MongoDB
+[ 2024-09-19 18:16:16,407 ] 61 root - INFO - Saving exported data into feature store file path: artifacts
+[ 2024-09-19 18:16:17,048 ] 87 root - INFO - Got the data from mongodb
+[ 2024-09-19 18:16:17,049 ] 90 root - INFO - Exited initiate_data_ingestion method of Data_Ingestion class
+[ 2024-09-19 18:16:17,049 ] 75 root - INFO - Entered initiate_data_transformation method of Data_Transformation class
+[ 2024-09-19 18:16:17,376 ] 42 root - INFO - Entered the save_object method of MainUtils class
+[ 2024-09-19 18:16:17,408 ] 48 root - INFO - Exited the save_object method of MainUtils class
+[ 2024-09-19 18:16:17,409 ] 138 root - INFO - Splitting training and testing input and target feature
+[ 2024-09-19 18:16:17,411 ] 144 root - INFO - Extracting model config file path
+[ 2024-09-19 18:17:44,654 ] 178 root - INFO - Best found model on both training and testing dataset
+[ 2024-09-19 18:17:44,654 ] 183 root - INFO - Saving model at path: artifacts\model.pkl
+[ 2024-09-19 18:17:44,654 ] 42 root - INFO - Entered the save_object method of MainUtils class
+[ 2024-09-19 18:17:44,670 ] 48 root - INFO - Exited the save_object method of MainUtils class
+[ 2024-09-19 18:18:44,724 ] 225 werkzeug - INFO - 192.168.134.4 - - [19/Sep/2024 18:18:44] "GET /train HTTP/1.1" 200 -
+[ 2024-09-19 18:21:30,031 ] 225 werkzeug - INFO - 192.168.134.4 - - [19/Sep/2024 18:21:30] "GET /predict HTTP/1.1" 200 -
+[ 2024-09-19 18:21:37,857 ] 60 root - INFO - Saving file to: prediction_artifacts\test_20240919_182137.csv
+[ 2024-09-19 18:21:38,218 ] 110 root - INFO - predictions completed. 
+[ 2024-09-19 18:21:38,218 ] 123 root - INFO - Deleted input file: prediction_artifacts\test_20240919_182137.csv
+[ 2024-09-19 18:21:38,233 ] 54 root - INFO - prediction completed. Downloading prediction file.
+[ 2024-09-19 18:21:38,249 ] 225 werkzeug - INFO - 192.168.134.4 - - [19/Sep/2024 18:21:38] "POST /predict HTTP/1.1" 200 -
